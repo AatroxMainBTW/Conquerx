@@ -47,8 +47,9 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
+        $likes = $profile->user->likes;
         $follows = (auth()->user()) ? auth()->user()->follows->contains($profile->id) : false;
-        return view('profiles.show')->with(['profile' => $profile, 'follows' => $follows]);
+        return view('profiles.show')->with(['profile' => $profile, 'follows' => $follows, 'likes' => $likes]);
     }
 
     /**
