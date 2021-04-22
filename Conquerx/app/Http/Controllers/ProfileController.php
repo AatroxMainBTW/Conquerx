@@ -47,7 +47,8 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        return view('profiles.show')->with(['profile' => $profile]);
+        $follows = (auth()->user()) ? auth()->user()->follows->contains($profile->id) : false;
+        return view('profiles.show')->with(['profile' => $profile, 'follows' => $follows]);
     }
 
     /**
@@ -101,5 +102,10 @@ class ProfileController extends Controller
     public function destroy(Profile $profile)
     {
         //
+    }
+
+    public function follow(Profile $profile)
+    {
+        return auth()->user()->follows()->toggle($profile->id);
     }
 }

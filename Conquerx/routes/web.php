@@ -28,3 +28,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('profile', ProfileController::class);
 
 Route::resource('post', PostController::class);
+Route::post('/post/like/{post}', [PostController::class, 'like'])->name('post.name');
+
+Route::post('/profile/follow/{profile}', [ProfileController::class, 'follow'])->name('profile.name');
