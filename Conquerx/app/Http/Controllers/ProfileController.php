@@ -109,4 +109,10 @@ class ProfileController extends Controller
     {
         return auth()->user()->follows()->toggle($profile->id);
     }
+
+   /* public function search()
+    {
+        $profiles = Profile::search('Star Trek')->get();
+        dd($profiles);
+    }*/
 }

@@ -10,6 +10,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block text-red-500" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
               </svg>
+
             <span class="text-white font-semibold text-sm">Likes ({{$likes->count()}})</span>
         </div>
         <div>
@@ -19,6 +20,7 @@
             <span class="text-white font-semibold text-sm">Posts ({{$profile->user->posts->count()}})</span>
         </div>
     </div>
+
 </div>
 <!--Rest of the profile design-->
 <div class="flex-1">
@@ -26,8 +28,45 @@
         <div>
             <img src="/storage/{{$profile->image}}" class="rounded-full w-32 h-32" alt="">
         </div>
+        <!--Modal exprimantal-->
+      <!--  <div class="bg-black opacity-80 absolute inset-0 flex justify-center items-center ">
+            <div class="bg-gray-200 rounded-lg">
 
+                <h4 class="text-xl text-center font-bold">What do you want to say !</h4>
+
+          {{--  <form action="{{route('post.store')}}" enctype="multipart/form-data" method="post">
+                @csrf--}}
+
+                <div class="mb-6 pt-3 rounded bg-gray-200 mt-9">
+
+                    <label for="caption" class="block text-gray-700 text-sm font-bold mb-2 ml-3">
+
+                        <span>Caption</span>
+
+                    </label>
+
+                    <div>
+                        <textarea id="caption" type="text" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-red-500 transition duration-500 pl-4 pt-3 pb-3 " name='caption' placeholder="Say something :) !!"></textarea>
+                    </div>
+                </div>
+
+                <div class="mb-6 pt-3 rounded bg-gray-200 mt-9">
+                    <label for="image" class="block text-gray-700 text-sm font-bold mb-2 ml-3">image</label>
+
+                    <input type="file" class="bg-gray-200 rounded w-full text-gray-700" id="image" name="image">
+                </div>
+
+                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 rounded-full shadow-lg hover:shadow-xl transition duration-500 w-80 mt-3 ml-5 mb-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    <span>Post</span>
+                </button>
+            </form>
+        </div>
+        </div> -->
         <div class="ml-5 mt-4">
+
             <div class="text-white font-bold text-2xl">{{$profile->fullname ?? 'You must add it in Edit profile'}}</div>
             <div class="text-white text-base mt-3">{{$profile->username ?? 'You must add username in Edit profile'}}</div>
             <div class="flex flex-row">
@@ -77,8 +116,9 @@
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
-                    <span class="pl-2">Add post</span>
+                    <span class="pl-2">Create post</span>
                 </a>
+
             </div>
             @endif
             @endauth
@@ -95,6 +135,8 @@
 
     </div>
 </div>
+
+
 </div>
 
 

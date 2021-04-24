@@ -3,19 +3,48 @@
 @section('content')
 
 <div class="flex flex-row justify-center">
-    <div><img class='rounded-xl max-h-96 max-w-96' src="/storage/{{$post->image}}" ></div>
+
+        <!--post will be a component-->
+        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white ">
+           <img class="w-full" src="/storage/{{$post->image}}" >
+            <div class="px-6 py-4 ">
+              <p class="text-gray-700 text-base">
+                {{$post->caption}}
+              </p>
+            </div>
+            <div class="px-6 pt-4 pb-2">
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Likes : {{$post->likers->count()}}</span>
+              <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Comment : 40</span>
+            </div>
+
+    </div>
+     <!--comment will be a component-->
     <div class="text-white ml-4">
         <div>
+            <img src="/storage/{{$profile->image}}" class="rounded-full w-10 h-10 inline-block" alt="">
             <span>{{$profile->username}}</span>
         </div>
-        <div><HR WIDTH="100%" SIZE="2"></div>
-        <div class="mt-9">Commentaire</div>
+        <div class="mt-3"><HR WIDTH="100%" SIZE="2"></div>
+        <div class="mt-9">
+            <div class="max-w-lg rounded overflow-hidden bg-white">
+                <div class="px-6 py-4">
+                  <div class="font-bold text-xl mb-2 text-black">
+                    <img src="/storage/{{$profile->image}}" class="rounded-full w-10 h-10 inline-block" alt="">
+                    <span>{{$profile->username}}</span>
+                  </div>
+                  <p class="text-gray-700 text-base">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                  </p>
+                </div>
+
+              </div>
+        </div>
 
     </div>
 
 </div>
-<div class="flex flex-row justify-center mt-2 ml-11">
-          <like-button post-id="{{$post->id}}" likes="{{$likes}}">
+<div class="flex flex-row justify-center mt-2 mr-80">
+          <like-button post-id="{{$post->id}}" likes="{{$likes}}" >
             </like-button>
 
 

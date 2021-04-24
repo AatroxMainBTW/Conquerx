@@ -1,5 +1,5 @@
 <template>
-<div>
+<div >
   <button class="bg-red-500 text-sm py-3 px-4 text-white rounded-full hover:bg-red-700 transition duration-500" @click="likePost" v-text="buttonText">
 
   </button>
@@ -15,6 +15,8 @@
         mounted() {
             console.log('Component mounted.')
         },
+
+
         data:function(){
             return {
                 status: this.likes,

@@ -40,7 +40,7 @@
                             </a>
                         </h1>
                     </div>
-
+                   <!-- <search-bar></search-bar> -->
                     <div class="order-last mr-5 mt-5 mb-5">
                         @guest
                             @if (Route::has('login'))
@@ -53,6 +53,7 @@
                         <a onclick="event.preventDefault();
                         document.getElementById('logout-form').submit();" class="border-2 border-red-500 text-sm text-white rounded-full px-4 py-2 hover:bg-red-500 transition duration-500 mr-3">Logout</a>
                         <a class="border-2 border-red-500 text-sm text-white rounded-full px-4 py-2 hover:bg-red-500 transition duration-500">{{ Auth::user()->name }}</a>
+
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
