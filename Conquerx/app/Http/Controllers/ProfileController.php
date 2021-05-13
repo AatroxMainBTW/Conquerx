@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Follow;
+use Illuminate\Support\Arr;
 use App\Models\Profile;
+use App\Models\Like;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -47,9 +51,18 @@ class ProfileController extends Controller
      */
     public function show(Profile $profile)
     {
-        $likes = $profile->user->likes;
+        $likesTest = Like::select('post_id')->where('user_id', $profile->user->id)->get();
+        $followingTest = Follow::select('profile_id')->where('user_id', $profile->user->id)->get();
+        $followersTest = Follow::select('user_id')->where('profile_id', $profile->id)->get();
+
+
+        $likecount = $likesTest->count();
+        $followerscount = $followersTest->count();
+        $followingcount = $followingTest->count();
+
+
         $follows = (auth()->user()) ? auth()->user()->follows->contains($profile->id) : false;
-        return view('profiles.show')->with(['profile' => $profile, 'follows' => $follows, 'likes' => $likes]);
+        return view('profiles.show')->with(['profile' => $profile, 'follows' => $follows,  'likecount' => $likecount ?? '0', 'followers' => $followerscount, 'following' => $followingcount]);
     }
 
     /**
@@ -110,7 +123,7 @@ class ProfileController extends Controller
         return auth()->user()->follows()->toggle($profile->id);
     }
 
-   /* public function search()
+    /* public function search()
     {
         $profiles = Profile::search('Star Trek')->get();
         dd($profiles);

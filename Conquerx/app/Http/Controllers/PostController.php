@@ -14,6 +14,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+
+    public function __construct()
+    {
+    }
+
+
+
+
+
+
     public function index()
     {
         //
@@ -64,10 +77,12 @@ class PostController extends Controller
     {
         $profile = $post->user->profile;
         $likes = (auth()->user()) ? auth()->user()->likes->contains($post->id) : false;
+        $comments = $post->comments();
         return view('posts.show', [
             'post' => $post,
             'likes' => $likes,
-            'profile' => $profile
+            'profile' => $profile,
+            'comments' => $comments
         ]);
     }
 

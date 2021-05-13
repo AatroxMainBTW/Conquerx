@@ -11,13 +11,27 @@
                 <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
               </svg>
 
-            <span class="text-white font-semibold text-sm">Likes ({{$likes->count()}})</span>
+            <span class="text-white font-semibold text-sm">Likes ({{$likecount ?? '0'}})</span>
         </div>
         <div>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
               </svg>
             <span class="text-white font-semibold text-sm">Posts ({{$profile->user->posts->count()}})</span>
+        </div>
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            <span class="text-white font-semibold text-sm">Following ({{$following}})</span>
+        </div>
+
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline-block text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            <span class="text-white font-semibold text-sm">Followers ({{$followers}})</span>
         </div>
     </div>
 
