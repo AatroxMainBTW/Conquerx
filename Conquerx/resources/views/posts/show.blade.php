@@ -5,19 +5,22 @@
 <div class="flex flex-row justify-center">
 
         <!--post will be a component-->
-        <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white ">
+        {{-- <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white ">
            <img class="w-full" src="/storage/{{$post->image}}" >
-            <div class="px-6 py-4 ">
+            <div class="px-6 py-4">
               <p class="text-gray-700 text-base">
                 {{$post->caption}}
               </p>
             </div>
-            <div class="px-6 pt-4 pb-2">
+             <div class="px-6 pt-4 pb-2">
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Likes : {{$post->likers->count()}}</span>
               <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Comment : 40</span>
             </div>
 
-    </div>
+         <like-comment likes-count='{{$post->likers->count()}}'></like-comment>
+
+    </div> --}}
+    <test-post caption='{{$post->caption}}' img='/storage/{{$post->image}}' post-id="{{$post->id}}" likes="{{$likes}}" likec='{{$post->likers->count()}}'></test-post>
      <!--comment will be a component-->
     <div class="text-white ml-4">
         <div>
@@ -43,7 +46,7 @@
     </div>
 
 </div>
-<div class="flex flex-row justify-center mt-2 mr-80">
+{{-- <div class="flex flex-row justify-center mt-2 mr-80">
           <like-button post-id="{{$post->id}}" likes="{{$likes}}" >
             </like-button>
 
@@ -54,5 +57,5 @@
       </svg>
     <span class="ml-2">Comment</span>
 </button>
-</div>
+</div> --}}
 @endsection

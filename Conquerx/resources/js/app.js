@@ -22,6 +22,8 @@ window.Vue = require('vue').default;
 Vue.component('like-button', require('./components/LikeButton.vue').default);
 Vue.component('follow-button', require('./components/FollowButton.vue').default);
 Vue.component('search-bar', require('./components/SearchBar.vue').default);
+Vue.component('like-comment', require('./components/Likes.comments_count.vue').default);
+Vue.component('test-post', require('./components/TestFullPostComponent.vue').default);
 
 
 
