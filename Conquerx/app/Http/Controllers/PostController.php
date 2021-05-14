@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
@@ -78,13 +79,17 @@ class PostController extends Controller
     {
         $profile = $post->user->profile;
         $likes = (auth()->user()) ? auth()->user()->likes->contains($post->id) : false;
+        $user_all = User::All();
 
         $comments = Comment::select('*')->where('commentable_id', $post->id)->get();
+
+
         return view('posts.show', [
             'post' => $post,
             'likes' => $likes,
             'profile' => $profile,
-            'comments' => $comments
+            'comments' => $comments,
+            'user_all' => $user_all
         ]);
     }
 

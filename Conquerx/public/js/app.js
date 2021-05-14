@@ -2090,17 +2090,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
   },
-  props: ['img', 'caption', 'postId', 'likes', 'likec', 'PostOwner', 'route', 'commentOwner'],
+  props: ['img', 'caption', 'postId', 'likes', 'likec', 'PostOwner', 'user_comment'],
   data: function data() {
     return {
       status: this.likes,
       LikeCount: this.likec,
       show: false,
-      commentOwner: this.commentOwner
+      users: this.user_comment
     };
   },
   methods: {
@@ -2123,18 +2124,18 @@ __webpack_require__.r(__webpack_exports__);
     showCommentInput: function showCommentInput() {
       if (this.show == false) {
         this.show = true;
-        console.log(this.show);
-        console.log(this.commentOwner);
+        console.log(this.users);
       } else {
         this.show = false;
-        console.log(this.show);
+        console.log(this.users);
       }
-    },
-    commentPost: function commentPost() {
-      axios.post('/post/comment/' + this.postId).then(function (response) {
-        console.log(response.data);
-      });
-    }
+    } // commentPost(){
+    //   axios.post('/post/comment/'+this.postId)
+    //   .then(response=>{
+    //     console.log(response.data)
+    //   })
+    // },
+
   },
   computed: {
     buttonText: function buttonText() {
@@ -38248,7 +38249,10 @@ var render = function() {
         _c("div", { staticClass: "mt-9" }, [
           _c(
             "div",
-            { staticClass: "max-w-lg rounded overflow-hidden bg-white" },
+            {
+              staticClass:
+                "max-w-lg rounded overflow-hidden bg-white grid grid-rows-3"
+            },
             [
               _c("div", { staticClass: "px-6 py-4" }, [
                 _c(
@@ -38260,7 +38264,7 @@ var render = function() {
                       attrs: { src: _vm.img, alt: "" }
                     }),
                     _vm._v(" "),
-                    _c("span", [_vm._v("username")])
+                    _c("span", [_vm._v("Hunter")])
                   ]
                 ),
                 _vm._v(" "),
@@ -38285,27 +38289,7 @@ var render = function() {
                 }
               ]
             },
-            [
-              _c("input", {
-                staticClass:
-                  "bg-gray-200 rounded-full w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-red-500 transition duration-500 pl-2 pt-2 pb-2 mt-4",
-                attrs: {
-                  type: "text",
-                  placeholder: "Comment here !",
-                  name: "comments"
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "button",
-                {
-                  staticClass:
-                    "bg-red-500 text-sm py-3 px-7 text-white rounded-full hover:bg-red-700 transition duration-500 mt-3 ml-3",
-                  on: { click: _vm.commentPost }
-                },
-                [_vm._v("Post")]
-              )
-            ]
+            [_vm._m(1)]
           )
         ])
       ])
@@ -38368,6 +38352,27 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "mt-3" }, [
       _c("hr", { attrs: { WIDTH: "100%", SIZE: "2" } })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("form", { attrs: { action: "" } }, [
+      _c("input", {
+        staticClass:
+          "bg-gray-200 rounded-full w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-red-500 transition duration-500 pl-2 pt-2 pb-2 mt-4",
+        attrs: { type: "text", placeholder: "Comment here !", name: "comments" }
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass:
+            "bg-red-500 text-sm py-3 px-7 text-white rounded-full hover:bg-red-700 transition duration-500 mt-3 ml-3"
+        },
+        [_vm._v("Post")]
+      )
     ])
   }
 ]

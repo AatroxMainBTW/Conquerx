@@ -26,11 +26,12 @@
           <hr WIDTH="100%" SIZE="2">
           </div>
         <div class="mt-9">
-            <div class="max-w-lg rounded overflow-hidden bg-white">
+            <div class="max-w-lg rounded overflow-hidden bg-white grid grid-rows-3">
+
                 <div class="px-6 py-4">
                   <div class="font-bold text-xl mb-2 text-black">
                     <img :src="img" class="rounded-full w-10 h-10 inline-block" alt="">
-                    <span>username</span>
+                    <span>Hunter</span>
                   </div>
                   <p class="text-gray-700 text-base">
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -39,10 +40,10 @@
 
               </div>
               <div v-show="show">
-                <!-- <form  method="POST" :action="route"> -->
+                <form action="">
                 <input type="text" class="bg-gray-200 rounded-full w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-red-500 transition duration-500 pl-2 pt-2 pb-2 mt-4" placeholder="Comment here !" name="comments">
-                <button @click='commentPost' class="bg-red-500 text-sm py-3 px-7 text-white rounded-full hover:bg-red-700 transition duration-500 mt-3 ml-3">Post</button>
-                <!-- </form> -->
+                <button class="bg-red-500 text-sm py-3 px-7 text-white rounded-full hover:bg-red-700 transition duration-500 mt-3 ml-3">Post</button>
+                </form>
               </div>
         </div>
 
@@ -80,8 +81,7 @@
           'likes',
           'likec',
           'PostOwner',
-          'route',
-          'commentOwner',
+           'user_comment'
 
         ],
       data:function(){
@@ -89,7 +89,7 @@
                 status: this.likes,
                 LikeCount: this.likec,
                 show:false,
-                commentOwner:this.commentOwner
+                users : this.user_comment
                 }
             },
         methods:{
@@ -109,19 +109,19 @@
           showCommentInput(){
             if(this.show == false){
               this.show = true
-              console.log(this.show)
-              console.log(this.commentOwner)
+              console.log(this.users)
+
             }else{
               this.show = false
-              console.log(this.show)
+              console.log(this.users)
             }
           },
-          commentPost(){
-             axios.post('/post/comment/'+this.postId)
-             .then(response=>{
-              console.log(response.data)
-             })
-           },
+          // commentPost(){
+          //   axios.post('/post/comment/'+this.postId)
+          //   .then(response=>{
+          //     console.log(response.data)
+          //   })
+          // },
         },
         computed:{
             buttonText(){

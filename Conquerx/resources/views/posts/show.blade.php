@@ -58,22 +58,21 @@
 </button>
 </div> --}}
 @foreach ($comments as $c)
-@if ($c->user_id == $profile->user->id)
-<p class="text-white">{{$profile->username}}</p>
-@else
-<p class="text-white">auth : {{auth()->user()->id}}</p>
-<p class="text-white">$c : {{$c->user_id}}</p>
+@foreach ( $user_all as $u)
+@if ($u->id == $c->user_id)
+
 @endif
-
-
 @endforeach
+@endforeach
+
 <test-post caption='{{$post->caption}}'
-     img='/storage/{{$post->image}}'
-      post-id="{{$post->id}}"
-       likes="{{$likes}}"
-        likec='{{$post->likers->count()}}'
-    Post-owner='{{$profile->username}}'
-        route='{{Route('post.comment',['post'=>$post->id])}}'
-        commentOwner='{{$comments}}'></test-post>
+    img='/storage/{{$post->image}}'
+     post-id="{{$post->id}}"
+      likes="{{$likes}}"
+       likec='{{$post->likers->count()}}'
+   Post-owner='{{$profile->username}}'
+    ></test-post>
+
+
 {{-- /post/comment/{{$post->id}} --}}
 @endsection
