@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -77,7 +78,8 @@ class PostController extends Controller
     {
         $profile = $post->user->profile;
         $likes = (auth()->user()) ? auth()->user()->likes->contains($post->id) : false;
-        $comments = $post->comments();
+
+        $comments = Comment::select('*')->where('commentable_id', $post->id)->get();
         return view('posts.show', [
             'post' => $post,
             'likes' => $likes,
@@ -123,5 +125,17 @@ class PostController extends Controller
     public function like(Post $post)
     {
         return auth()->user()->likes()->toggle($post->id);
+    }
+
+    public function comment(Request $request, Post $post)
+    {
+        $data = $request->validate([
+            'comments' => 'required',
+        ]);
+
+        $comment = $post->comments->create([
+            'body' => $data['comments']
+        ]);
+        dd($comment);
     }
 }

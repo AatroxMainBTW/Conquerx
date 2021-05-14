@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="flex flex-row justify-center">
+{{-- <div class="flex flex-row justify-center"> --}}
 
         <!--post will be a component-->
         {{-- <div class="max-w-sm rounded overflow-hidden shadow-lg bg-white ">
@@ -20,9 +20,9 @@
          <like-comment likes-count='{{$post->likers->count()}}'></like-comment>
 
     </div> --}}
-    <test-post caption='{{$post->caption}}' img='/storage/{{$post->image}}' post-id="{{$post->id}}" likes="{{$likes}}" likec='{{$post->likers->count()}}'></test-post>
+
      <!--comment will be a component-->
-    <div class="text-white ml-4">
+    {{-- <div class="text-white">
         <div>
             <img src="/storage/{{$profile->image}}" class="rounded-full w-10 h-10 inline-block" alt="">
             <span>{{$profile->username}}</span>
@@ -43,9 +43,8 @@
               </div>
         </div>
 
-    </div>
-
-</div>
+    </div> --}}
+{{-- </div> --}}
 {{-- <div class="flex flex-row justify-center mt-2 mr-80">
           <like-button post-id="{{$post->id}}" likes="{{$likes}}" >
             </like-button>
@@ -58,4 +57,23 @@
     <span class="ml-2">Comment</span>
 </button>
 </div> --}}
+@foreach ($comments as $c)
+@if ($c->user_id == $profile->user->id)
+<p class="text-white">{{$profile->username}}</p>
+@else
+<p class="text-white">auth : {{auth()->user()->id}}</p>
+<p class="text-white">$c : {{$c->user_id}}</p>
+@endif
+
+
+@endforeach
+<test-post caption='{{$post->caption}}'
+     img='/storage/{{$post->image}}'
+      post-id="{{$post->id}}"
+       likes="{{$likes}}"
+        likec='{{$post->likers->count()}}'
+    Post-owner='{{$profile->username}}'
+        route='{{Route('post.comment',['post'=>$post->id])}}'
+        commentOwner='{{$comments}}'></test-post>
+{{-- /post/comment/{{$post->id}} --}}
 @endsection

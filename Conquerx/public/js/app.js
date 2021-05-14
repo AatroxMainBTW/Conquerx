@@ -2061,15 +2061,46 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
   },
-  props: ['img', 'caption', 'postId', 'likes', 'likec'],
+  props: ['img', 'caption', 'postId', 'likes', 'likec', 'PostOwner', 'route', 'commentOwner'],
   data: function data() {
     return {
       status: this.likes,
-      LikeCount: this.likec
+      LikeCount: this.likec,
+      show: false,
+      commentOwner: this.commentOwner
     };
   },
   methods: {
@@ -2087,6 +2118,21 @@ __webpack_require__.r(__webpack_exports__);
 
         console.log(response.data);
         console.log(_this.LikeCount);
+      });
+    },
+    showCommentInput: function showCommentInput() {
+      if (this.show == false) {
+        this.show = true;
+        console.log(this.show);
+        console.log(this.commentOwner);
+      } else {
+        this.show = false;
+        console.log(this.show);
+      }
+    },
+    commentPost: function commentPost() {
+      axios.post('/post/comment/' + this.postId).then(function (response) {
+        console.log(response.data);
       });
     }
   },
@@ -38144,47 +38190,126 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "max-w-sm rounded overflow-hidden shadow-lg bg-white " },
-      [
-        _c("img", { staticClass: "w-full", attrs: { src: _vm.img } }),
-        _vm._v(" "),
-        _c("div", { staticClass: "px-6 py-4" }, [
-          _c("p", { staticClass: "text-gray-700 text-base" }, [
-            _vm._v(
-              "\n                    " +
-                _vm._s(_vm.caption) +
-                "\n              "
+    _c("div", { staticClass: "flex flex-row justify-center" }, [
+      _c(
+        "div",
+        { staticClass: "max-w-sm rounded overflow-hidden shadow-lg bg-white " },
+        [
+          _c("img", { staticClass: "w-full", attrs: { src: _vm.img } }),
+          _vm._v(" "),
+          _c("div", { staticClass: "px-6 py-4" }, [
+            _c("p", { staticClass: "text-gray-700 text-base" }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(_vm.caption) +
+                  "\n              "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "px-6 pt-4 pb-2" }, [
+            _c(
+              "span",
+              {
+                staticClass:
+                  "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              },
+              [
+                _c("strong", [_vm._v("Likes :")]),
+                _vm._v(" "),
+                _c("strong", [_vm._v(_vm._s(_vm.LikeCount))])
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass:
+                  "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              },
+              [_vm._v("Comment : 0")]
             )
           ])
+        ]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "text-white ml-4" }, [
+        _c("div", [
+          _c("img", {
+            staticClass: "rounded-full w-10 h-10 inline-block",
+            attrs: { src: _vm.img, alt: "" }
+          }),
+          _vm._v(" "),
+          _c("span", [_vm._v(_vm._s(_vm.PostOwner))])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "px-6 pt-4 pb-2" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "mt-9" }, [
           _c(
-            "span",
-            {
-              staticClass:
-                "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
-            },
+            "div",
+            { staticClass: "max-w-lg rounded overflow-hidden bg-white" },
             [
-              _c("strong", [_vm._v("Likes :")]),
-              _vm._v(" "),
-              _c("strong", [_vm._v(_vm._s(_vm.LikeCount))])
+              _c("div", { staticClass: "px-6 py-4" }, [
+                _c(
+                  "div",
+                  { staticClass: "font-bold text-xl mb-2 text-black" },
+                  [
+                    _c("img", {
+                      staticClass: "rounded-full w-10 h-10 inline-block",
+                      attrs: { src: _vm.img, alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", [_vm._v("username")])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("p", { staticClass: "text-gray-700 text-base" }, [
+                  _vm._v(
+                    "\n                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.\n                  "
+                  )
+                ])
+              ])
             ]
           ),
           _vm._v(" "),
           _c(
-            "span",
+            "div",
             {
-              staticClass:
-                "inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.show,
+                  expression: "show"
+                }
+              ]
             },
-            [_vm._v("Comment : 0")]
+            [
+              _c("input", {
+                staticClass:
+                  "bg-gray-200 rounded-full w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-red-500 transition duration-500 pl-2 pt-2 pb-2 mt-4",
+                attrs: {
+                  type: "text",
+                  placeholder: "Comment here !",
+                  name: "comments"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass:
+                    "bg-red-500 text-sm py-3 px-7 text-white rounded-full hover:bg-red-700 transition duration-500 mt-3 ml-3",
+                  on: { click: _vm.commentPost }
+                },
+                [_vm._v("Post")]
+              )
+            ]
           )
         ])
-      ]
-    ),
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "flex flex-row justify-center mt-2 mr-80" }, [
       _c(
@@ -38202,7 +38327,8 @@ var render = function() {
         "button",
         {
           staticClass:
-            "bg-red-500 text-sm py-3 px-4 text-white rounded-full hover:bg-red-700 transition duration-500 ml-3"
+            "bg-red-500 text-sm py-3 px-4 text-white rounded-full hover:bg-red-700 transition duration-500 ml-3",
+          on: { click: _vm.showCommentInput }
         },
         [
           _c(
@@ -38235,7 +38361,16 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-3" }, [
+      _c("hr", { attrs: { WIDTH: "100%", SIZE: "2" } })
+    ])
+  }
+]
 render._withStripped = true
 
 

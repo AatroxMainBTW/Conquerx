@@ -31,5 +31,6 @@ Route::resource('post', PostController::class);
 
 
 Route::post('/post/like/{post}', [PostController::class, 'like'])->name('post.name');
+Route::post('/post/comment/{post}', [PostController::class, 'comment'])->name('post.comment');
 Route::post('/profile/follow/{profile}', [ProfileController::class, 'follow'])->name('profile.name');
 //Route::post('/profile/search/{profile}', [ProfileController::class, 'search'])->name('profile.name');
